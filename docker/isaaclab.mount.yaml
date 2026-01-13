@@ -1,0 +1,6 @@
+services:
+  isaac-lab-base:
+    volumes:
+      - type: bind
+        source: ${EXTERNAL_PROJECT_ROOT}
+        target: /workspace/external/isaac_so_arm101
