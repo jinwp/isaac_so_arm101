@@ -22,6 +22,11 @@ gym.register(
     kwargs={
         "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm100ReachEnvCfg",
         "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:ReachPPORunnerCfg",
+        "skrl_ppo_cfg_entry_point": f"{agents.__name__}:skrl_ppo_cfg.yaml",
+        "skrl_sac_cfg_entry_point": f"{agents.__name__}:skrl_sac_cfg.yaml",
+        "skrl_td3_cfg_entry_point": f"{agents.__name__}:skrl_td3_cfg.yaml",
+        "skrl_trpo_cfg_entry_point": f"{agents.__name__}:skrl_trpo_cfg.yaml",
+        "skrl_rpo_cfg_entry_point": f"{agents.__name__}:skrl_rpo_cfg.yaml",
     },
     disable_env_checker=True,
 )
@@ -32,6 +37,11 @@ gym.register(
     kwargs={
         "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm100ReachEnvCfg_PLAY",
         "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:ReachPPORunnerCfg",
+        "skrl_ppo_cfg_entry_point": f"{agents.__name__}:skrl_ppo_cfg.yaml",
+        "skrl_sac_cfg_entry_point": f"{agents.__name__}:skrl_sac_cfg.yaml",
+        "skrl_td3_cfg_entry_point": f"{agents.__name__}:skrl_td3_cfg.yaml",
+        "skrl_trpo_cfg_entry_point": f"{agents.__name__}:skrl_trpo_cfg.yaml",
+        "skrl_rpo_cfg_entry_point": f"{agents.__name__}:skrl_rpo_cfg.yaml",
     },
     disable_env_checker=True,
 )
@@ -42,6 +52,11 @@ gym.register(
     kwargs={
         "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm101ReachEnvCfg",
         "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:ReachPPORunnerCfg",
+        "skrl_ppo_cfg_entry_point": f"{agents.__name__}:skrl_ppo_cfg.yaml",
+        "skrl_sac_cfg_entry_point": f"{agents.__name__}:skrl_sac_cfg.yaml",
+        "skrl_td3_cfg_entry_point": f"{agents.__name__}:skrl_td3_cfg.yaml",
+        "skrl_trpo_cfg_entry_point": f"{agents.__name__}:skrl_trpo_cfg.yaml",
+        "skrl_rpo_cfg_entry_point": f"{agents.__name__}:skrl_rpo_cfg.yaml",
     },
     disable_env_checker=True,
 )
@@ -52,6 +67,11 @@ gym.register(
     kwargs={
         "env_cfg_entry_point": f"{__name__}.joint_pos_env_cfg:SoArm101ReachEnvCfg_PLAY",
         "rsl_rl_cfg_entry_point": f"{agents.__name__}.rsl_rl_ppo_cfg:ReachPPORunnerCfg",
+        "skrl_ppo_cfg_entry_point": f"{agents.__name__}:skrl_ppo_cfg.yaml",
+        "skrl_sac_cfg_entry_point": f"{agents.__name__}:skrl_sac_cfg.yaml",
+        "skrl_td3_cfg_entry_point": f"{agents.__name__}:skrl_td3_cfg.yaml",
+        "skrl_trpo_cfg_entry_point": f"{agents.__name__}:skrl_trpo_cfg.yaml",
+        "skrl_rpo_cfg_entry_point": f"{agents.__name__}:skrl_rpo_cfg.yaml",
     },
     disable_env_checker=True,
 )
