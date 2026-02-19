@@ -24,7 +24,7 @@ models:
         input: OBSERVATIONS
         layers: [256, 128, 64]
         activations: elu
-    output: ACTIONS
+    output: tanh(ACTIONS)
   critic_1:
     class: DeterministicMixin
     clip_actions: False
@@ -64,23 +64,23 @@ models:
 
 memory:
   class: RandomMemory
-  memory_size: 10000
+  memory_size: 100000
 
 agent:
   class: SAC
   gradient_steps: 1
-  batch_size: 512
+  batch_size: 4096
   discount_factor: 0.99
   polyak: 0.005
-  learning_rate: 3.0e-4
+  learning_rate: [3.0e-4, 3.0e-4, 1.0e-5]
   state_preprocessor: RunningStandardScaler
   state_preprocessor_kwargs: null
-  random_timesteps: 0
-  learning_starts: 0
+  random_timesteps: 1000
+  learning_starts: 1000
   grad_norm_clip: 1.0
   learn_entropy: True
   initial_entropy_value: 0.2
-  target_entropy: null
+  target_entropy: -2.0
   rewards_shaper_scale: 1.0
   # logging and checkpoint
   experiment:

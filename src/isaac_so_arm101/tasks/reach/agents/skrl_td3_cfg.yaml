@@ -20,7 +20,7 @@ models:
         input: OBSERVATIONS
         layers: [128, 128]
         activations: elu
-    output: ACTIONS
+    output: tanh(ACTIONS)
   target_policy:
     class: DeterministicMixin
     clip_actions: False
@@ -29,7 +29,7 @@ models:
         input: OBSERVATIONS
         layers: [128, 128]
         activations: elu
-    output: ACTIONS
+    output: tanh(ACTIONS)
   critic_1:
     class: DeterministicMixin
     clip_actions: False
@@ -80,8 +80,8 @@ agent:
   learning_rate: 3.0e-4
   state_preprocessor: RunningStandardScaler
   state_preprocessor_kwargs: null
-  random_timesteps: 0
-  learning_starts: 0
+  random_timesteps: 50
+  learning_starts: 50
   grad_norm_clip: 1.0
   exploration_noise: GaussianNoise
   exploration_noise_kwargs:
