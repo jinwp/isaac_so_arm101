@@ -77,7 +77,7 @@ agent:
   # logging and checkpoint
   experiment:
     directory: "soarm_lift"
-    experiment_name: ""
+    experiment_name: "history length=10"
     write_interval: auto
     checkpoint_interval: auto
 

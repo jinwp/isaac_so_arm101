@@ -121,9 +121,12 @@ class ObservationsCfg:
     @configclass
     class PolicyCfg(ObsGroup):
         """Observations for policy group."""
-
-        joint_pos = ObsTerm(func=mdp.joint_pos_rel)
-        joint_vel = ObsTerm(func=mdp.joint_vel_rel)
+        # joint_pos = ObsTerm(func=mdp.joint_pos_rel)
+        # joint_vel = ObsTerm(func=mdp.joint_vel_rel)
+        # Use joint_pos history (3 timesteps: t-2, t-1, t) instead of joint_vel
+        # for sim2real: the physical SOArm 101 only provides joint positions, not velocities.
+        # The network can learn velocity/acceleration from consecutive position differences.
+        joint_pos = ObsTerm(func=mdp.joint_pos_rel, history_length=10)
         object_position = ObsTerm(func=mdp.object_position_in_robot_root_frame)
         target_object_position = ObsTerm(func=mdp.generated_commands, params={"command_name": "object_pose"})
         actions = ObsTerm(func=mdp.last_action)

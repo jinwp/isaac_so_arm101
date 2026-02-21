@@ -21,12 +21,15 @@ class ReachPPORunnerCfg(RslRlOnPolicyRunnerCfg):
     num_steps_per_env = 24
     max_iterations = 1000
     save_interval = 50
-    experiment_name = "reach"
-    run_name = ""
+    experiment_name = "reach_nojointvel"
+    run_name = "obs_norm_added"
     resume = False
     empirical_normalization = False
     policy = RslRlPpoActorCriticCfg(
         init_noise_std=1.0,
+        noise_std_type="log",
+        actor_obs_normalization=True,
+        critic_obs_normalization=True,
         actor_hidden_dims=[64, 64],
         critic_hidden_dims=[64, 64],
         activation="elu",

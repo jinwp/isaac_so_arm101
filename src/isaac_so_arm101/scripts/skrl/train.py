@@ -76,6 +76,7 @@ import time
 from datetime import datetime
 
 import gymnasium as gym
+import numpy as np
 import skrl
 from packaging import version
 
@@ -201,6 +202,22 @@ def main(env_cfg: ManagerBasedRLEnvCfg | DirectRLEnvCfg | DirectMARLEnvCfg, agen
     # convert to single-agent instance if required by the RL algorithm
     if isinstance(env.unwrapped, DirectMARLEnv) and algorithm in ["ppo", "sac", "td3", "trpo", "rpo"]:
         env = multi_agent_to_single_agent(env)
+
+    # Isaac Lab manager-based environments expose unbounded action spaces by default.
+    # TD3 in skrl uses action-space bounds for internal clamping; provide sane finite bounds.
+    if algorithm == "td3":
+        single_action_space = getattr(env.unwrapped, "single_action_space", None)
+        if isinstance(single_action_space, gym.spaces.Box):
+            if not (np.isfinite(single_action_space.low).all() and np.isfinite(single_action_space.high).all()):
+                bounded_action_space = gym.spaces.Box(
+                    low=-1.0, high=1.0, shape=single_action_space.shape, dtype=np.float32
+                )
+                env.unwrapped.single_action_space = bounded_action_space
+                env.unwrapped.action_space = gym.vector.utils.batch_space(bounded_action_space, env.unwrapped.num_envs)
+                print(
+                    "[INFO] TD3 detected unbounded action space. "
+                    "Using fallback finite action bounds [-1, 1] for skrl internal clamping."
+                )
 
     # wrap for video recording
     if args_cli.video:

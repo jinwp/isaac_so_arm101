@@ -22,9 +22,13 @@ class LiftCubePPORunnerCfg(RslRlOnPolicyRunnerCfg):
     max_iterations = 2000
     save_interval = 50
     experiment_name = "lift"
+    run_name = "normal"
     empirical_normalization = False
     policy = RslRlPpoActorCriticCfg(
         init_noise_std=1.0,
+        noise_std_type="log",
+        actor_obs_normalization=True,
+        critic_obs_normalization=True,
         actor_hidden_dims=[256, 128, 64],
         critic_hidden_dims=[256, 128, 64],
         activation="elu",
