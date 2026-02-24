@@ -12,6 +12,7 @@ from isaaclab.utils import configclass
 from isaaclab_rl.rsl_rl import (
     RslRlOnPolicyRunnerCfg,
     RslRlPpoActorCriticCfg,
+    # RslRlPpoActorCriticRecurrentCfg,
     RslRlPpoAlgorithmCfg,
 )
 
@@ -19,11 +20,23 @@ from isaaclab_rl.rsl_rl import (
 @configclass
 class LiftCubePPORunnerCfg(RslRlOnPolicyRunnerCfg):
     num_steps_per_env = 24
-    max_iterations = 2000
+    max_iterations = 5000
     save_interval = 50
     experiment_name = "lift"
-    run_name = "normal"
+    run_name = "normal_maxiter5000_learnepoch5"
     empirical_normalization = False
+    # policy = RslRlPpoActorCriticRecurrentCfg(
+    #     init_noise_std=1.0,
+    #     noise_std_type="log",
+    #     actor_obs_normalization=True,
+    #     critic_obs_normalization=True,
+    #     actor_hidden_dims=[256, 128, 64],
+    #     critic_hidden_dims=[256, 128, 64],
+    #     activation="elu",
+    #     rnn_type="lstm",          # or "gru" (lighter, faster)
+    #     rnn_hidden_dim=256,       # range: 64-512
+    #     rnn_num_layers=1,         # range: 1-2
+    # )
     policy = RslRlPpoActorCriticCfg(
         init_noise_std=1.0,
         noise_std_type="log",
