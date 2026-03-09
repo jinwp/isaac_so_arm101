@@ -20,10 +20,10 @@ from isaaclab_rl.rsl_rl import (
 @configclass
 class LiftCubePPORunnerCfg(RslRlOnPolicyRunnerCfg):
     num_steps_per_env = 24
-    max_iterations = 5000
+    max_iterations = 3000
     save_interval = 50
     experiment_name = "lift"
-    run_name = "normal_maxiter5000_learnepoch5"
+    run_name = "normal_final"
     empirical_normalization = False
     # policy = RslRlPpoActorCriticRecurrentCfg(
     #     init_noise_std=1.0,
